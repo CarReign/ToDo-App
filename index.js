@@ -42,10 +42,10 @@ const list = document.querySelector("#tasks");
 
 form.onsubmit = async (event) => {
     event.preventDefault();
-    const todoRef = await addDoc(collection(db, 'todo'), {
+    const todoRef = await addDoc(todoRef, {
         task: inputvalue,
       });
     //await getTodos();
-    //form.reset();
+    form.reset();
 };
 
