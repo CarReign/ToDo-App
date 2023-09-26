@@ -40,12 +40,11 @@ const form = document.querySelector("#new-task-form");
 const input = document.querySelector("#new-task-input");
 const list = document.querySelector("#tasks");
 
-form.onsubmit = async (event) => {
-    event.preventDefault();
-    const todoRef = await addDoc(todoRef, {
-        task: input.value,
-      });
-    //await getTodos();
-    form.reset();
-};
-
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const inputValue = input.value;
+  const docRef = await addDoc(todoRef), {
+  task: "pakyo",
+});
+console.log("Document written with ID: ", docRef.id);
+});
