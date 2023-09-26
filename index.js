@@ -49,6 +49,6 @@ form.addEventListener('submit', (event) => {
   const inputValue = input.value;
   addDoc(collection(db, 'todo'), {
   task: inputValue,
-}).then(function (docRef) {alert("Document written with ID: ", docRef.id);});
+}).then(function (docRef) {alert("Document written with ID: ", docRef.task);});
 
 });
