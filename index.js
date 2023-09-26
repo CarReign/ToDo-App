@@ -43,7 +43,7 @@ const list = document.querySelector("#tasks");
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const inputValue = input.value;
-  const docRef = await addDoc(todoRef), {
+  const docRef = await addDoc(collection(db, 'todo'), {
   task: "pakyo",
 });
 console.log("Document written with ID: ", docRef.id);
