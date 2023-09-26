@@ -40,11 +40,15 @@ const form = document.querySelector("#new-task-form");
 const input = document.querySelector("#new-task-input");
 const list = document.querySelector("#tasks");
 
+document.addEventListener('DOMContentLoaded', ()=>{
+    addNoteButton.addEventListener('click', ()=>{ addNote(); });
+});
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const inputValue = input.value;
-  const docRef = await addDoc(collection(db, 'todo'), {
-  task: "pakyo",
-});
-console.log("Document written with ID: ", docRef.id);
+  addDoc(collection(db, 'todo'), {
+  task: inputValue,
+}).then(function (docRef) {alert("Document written with ID: ", docRef.id);});
+
 });
