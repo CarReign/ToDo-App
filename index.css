@@ -121,6 +121,16 @@ main {
 	transition: 0.4s;
 }
 
+li {
+	color: white;
+	font-weight: bold;
+	color: var(--light);
+	font-size: 1.125rem;
+	width: 100%;
+	display: block;
+	transition: 0.4s;
+}
+
 .task .content .text:not(:read-only) {
 	color: var(--pink);
 }
@@ -132,10 +142,22 @@ main {
 
 .task .actions button {
 	cursor: pointer;
+	color: #ffffff;
 	margin: 0 0.5rem;
 	font-size: 1.125rem;
 	font-weight: 700;
 	text-transform: uppercase;
+	transition: 0.4s;
+}
+
+button {
+	color: var(--pink);
+	font-size: 1.25rem;
+	font-weight: 700;
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	cursor: pointer;
 	transition: 0.4s;
 }
 

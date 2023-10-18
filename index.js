@@ -56,6 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function addTask() {
   const inputValue = input.value;
+  if (!inputValue) {
+    alert('please put a task');
+    return;
+  };
   addDoc(collection(db, 'todo'), {
     userId: userId,
     task: inputValue,
@@ -65,7 +69,18 @@ function addTask() {
     (docRef) => {
       console.log("Document written with ID: ", docRef.id);
       input.value = '';
-      taskList.innerHTML += `<li id="${docRef.id}">${inputValue}</li>`;
+      const deletebtn = document.createElement("button");
+      deletebtn.classList.add("delete");
+      deletebtn.addEventListener('click', () => {
+        deleteTask(docRef.id);
+      });
+      const task = document.createElement("li");
+      task.classList.add("task");
+      task.id = docRef.id;
+      task.innerHTML = inputValue;
+      task.appendChild(deletebtn);
+      taskList.appendChild(task);
+    
     }
   ).catch((error) => {
     console.error("Error adding document: ", error);
@@ -77,28 +92,44 @@ function getTasks(){
   getDocs(q).then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       const documentData = doc.data(); 
-      taskList.innerHTML += `<li id="${doc.id}">${documentData.task}</li>`;
+      const deletebtn = document.createElement("button");
+      deletebtn.innerHTML = 'Delete';
+      deletebtn.classList.add("delete");
+      deletebtn.addEventListener('click', () => {
+        deleteTask(doc.id);
+      });
+      const task = document.createElement("li");
+      task.classList.add("task");
+      task.id = doc.id;
+      task.innerHTML = documentData.task;
+      task.appendChild(deletebtn);
+      taskList.appendChild(task);
+      
     });
   });
 };
 
-/*
-const q = query(todoRef, where("id", "==", id), orderBy("date", "desc"));
+function deleteTask(id){
+const q = query(todoRef, where("__name__", "==", id));
 
 getDocs(q).then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     deleteDoc(doc.ref).then(
       () => { 
+        console.log('task deleted');
+        document.getElementById(id).remove();
         // what to do if the document is deleted
       }
     ).catch((error) => {
       // what to do if the document fails to delete
+      console.log('Error');
+      
     });
-    ;
-  }
+  });
 });
+};
 
-*/
+
 
 function generateId(){
   var dt = new Date().getTime();
