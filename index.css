@@ -161,6 +161,12 @@ button {
 	transition: 0.4s;
 }
 
+button:hover {
+	opacity: 0.8;
+}
+
+
+
 .task .actions button:hover {
 	opacity: 0.8;
 }
